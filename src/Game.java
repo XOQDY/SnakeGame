@@ -2,17 +2,25 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.KeyAdapter;
+import java.awt.event.KeyEvent;
 
 public class Game extends JFrame {
 
+    private Snake snake;
     private Board board;
     private int boardSize;
+    private int mid;
+    private int half;
     private int foodCount;
     private GridUI gridUI;
     private static final Color darkGreen = new Color(120,121,93);
 
     public Game() {
         this.boardSize = 19 + 2; // +2 for the walls
+        this.mid = boardSize / 2;
+        this.half = (mid + 1) / 2;
+        snake = new Snake(mid, half);
         board = new Board(boardSize);
         gridUI = new GridUI();
         add(gridUI);
@@ -74,6 +82,22 @@ public class Game extends JFrame {
             }
         }
     }
+
+    class Controller extends KeyAdapter {
+        @Override
+        public void keyPressed(KeyEvent e) {
+            if (e.getKeyCode() == KeyEvent.VK_UP) {
+                snake.top();
+            } else if (e.getKeyCode() == KeyEvent.VK_DOWN) {
+                snake.bottom();
+            } else if (e.getKeyCode() == KeyEvent.VK_LEFT) {
+                snake.left();
+            } else if (e.getKeyCode() == KeyEvent.VK_RIGHT) {
+                snake.right();
+            }
+        }
+    }
+
 
     public static void main(String[] args) {
         Game game = new Game();
