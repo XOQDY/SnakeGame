@@ -1,20 +1,23 @@
+import java.util.ArrayList;
+import java.util.List;
+
 public class Snake {
 
     private static final int CELL_PIXEL_SIZE = 30;
 
     private State currentState;
 
+    private List<Cell> snake = new ArrayList<Cell>();
+
     private int x;
     private int y;
     private int dx;
     private int dy;
 
-    public Snake(int x, int y, int dx, int dy) {
-        currentState = new StateRight();
+    public Snake(int x, int y) {
         this.x = x;
         this.y = y;
-        this.dx = dx;
-        this.dy = dy;
+        currentState = new StateRight();
     }
 
     public void setCurrentState(State state) {
@@ -48,5 +51,13 @@ public class Snake {
 
     public int getY() {
         return y;
+    }
+
+    public void setDx(int dx) {
+        this.dx = dx;
+    }
+
+    public void setDy(int dy) {
+        this.dy = dy;
     }
 }
