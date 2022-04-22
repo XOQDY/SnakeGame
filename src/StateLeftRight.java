@@ -1,6 +1,6 @@
 public class StateLeftRight extends State{
     @Override
-    public void top(Snake stateOwner) {
+    public void up(Snake stateOwner) {
         stateOwner.setCurrentState(new StateUpDown());
         stateOwner.setDx(0);
         stateOwner.setDy(1);
@@ -15,7 +15,7 @@ public class StateLeftRight extends State{
     }
 
     @Override
-    public void bottom(Snake stateOwner) {
+    public void down(Snake stateOwner) {
         stateOwner.setCurrentState(new StateUpDown());
         stateOwner.setDx(0);
         stateOwner.setDy(-1);

@@ -21,6 +21,9 @@ public class Game extends JFrame {
         this.mid = boardSize / 2;
         this.half = (mid + 1) / 2;
         snake = new Snake(mid, half);
+        for (int i = 3; i >= 0; --i) {
+            snake.addSnake(board.getCell(half, half - i));
+        }
         board = new Board(boardSize);
         gridUI = new GridUI();
         add(gridUI);
@@ -87,9 +90,9 @@ public class Game extends JFrame {
         @Override
         public void keyPressed(KeyEvent e) {
             if (e.getKeyCode() == KeyEvent.VK_UP) {
-                snake.top();
+                snake.up();
             } else if (e.getKeyCode() == KeyEvent.VK_DOWN) {
-                snake.bottom();
+                snake.down();
             } else if (e.getKeyCode() == KeyEvent.VK_LEFT) {
                 snake.left();
             } else if (e.getKeyCode() == KeyEvent.VK_RIGHT) {

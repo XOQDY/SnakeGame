@@ -1,6 +1,6 @@
 public class StateUpDown extends State{
     @Override
-    public void top(Snake stateOwner) {
+    public void up(Snake stateOwner) {
     }
 
     @Override
@@ -18,6 +18,6 @@ public class StateUpDown extends State{
     }
 
     @Override
-    public void bottom(Snake stateOwner) {
+    public void down(Snake stateOwner) {
     }
 }

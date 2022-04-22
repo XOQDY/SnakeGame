@@ -3,8 +3,6 @@ import java.util.List;
 
 public class Snake {
 
-    private static final int CELL_PIXEL_SIZE = 30;
-
     private State currentState;
 
     private List<Cell> snake = new ArrayList<Cell>();
@@ -26,25 +24,25 @@ public class Snake {
         this.currentState = state;
     }
 
-    public void top () {
-        currentState.top(this);
+    public void up() {
+        currentState.up(this);
     }
 
-    public void right () {
+    public void right() {
         currentState.right(this);
     }
 
-    public void left () {
+    public void left() {
         currentState.left(this);
     }
 
-    public void bottom () {
-        currentState.bottom(this);
+    public void down() {
+        currentState.down(this);
     }
 
-    public void move() {
-        x += dx * CELL_PIXEL_SIZE;
-        y += dy * CELL_PIXEL_SIZE;
+    public void move(Cell cell) {
+        snake.remove(0);
+        addSnake(cell);
     }
 
     public int getX() {
@@ -61,5 +59,9 @@ public class Snake {
 
     public void setDy(int dy) {
         this.dy = dy;
+    }
+
+    public void addSnake(Cell cell) {
+        this.snake.add(cell);
     }
 }
