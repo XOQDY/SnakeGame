@@ -7,9 +7,10 @@ public class Game extends JFrame {
     private int boardSize;
     private int foodCount;
     private GridUI gridUI;
+    private static final Color darkGreen = new Color(120,121,93);
 
     public Game() {
-        this.boardSize = 20;
+        this.boardSize = 20 + 2; // +2 for the walls
         board = new Board(boardSize);
         gridUI = new GridUI();
         add(gridUI);
@@ -49,8 +50,13 @@ public class Game extends JFrame {
 
             Cell cell = board.getCell(row, col);
 
-            graphics.setColor(Color.gray);
-            graphics.fillRect(x, y, CELL_PIXEL_SIZE, CELL_PIXEL_SIZE);
+            if (cell.isWall()) {
+                graphics.setColor(Color.black);
+                graphics.fillRect(x, y, CELL_PIXEL_SIZE, CELL_PIXEL_SIZE);
+            } else {
+                graphics.setColor(darkGreen);
+                graphics.fillRect(x, y, CELL_PIXEL_SIZE, CELL_PIXEL_SIZE);
+            }
         }
     }
 
