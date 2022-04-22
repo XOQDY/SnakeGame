@@ -36,4 +36,17 @@ public class Snake {
     public void bottom () {
         currentState.bottom(this);
     }
+
+    public void move() {
+        x += dx * CELL_PIXEL_SIZE;
+        y += dy * CELL_PIXEL_SIZE;
+    }
+
+    public int getX() {
+        return x;
+    }
+
+    public int getY() {
+        return y;
+    }
 }
