@@ -1,13 +1,21 @@
+import java.util.Observable;
+import java.util.Observer;
 import java.util.Random;
 
-public class Board {
+public class Board extends Observable {
 
     private Cell [][] cells;
     private int size;
     private Snake snake;
+    public boolean gameOver;
 
     public Board(int size) {
         this.size = size;
+        this.gameOver = false;
+        start();
+    }
+
+    public void start() {
         initCell();
         initObject();
     }
@@ -33,9 +41,9 @@ public class Board {
         for (int i = 0; i < 3; ++i) {
             cells[mid][half - i].setSnake(true);
         }
-        for (int i = 3; i >= 0; --i) {
-            snake.addCell(cells[mid][half - i]);
-        }
+//        for (int i = 3; i >= 0; --i) {
+//            snake.addCell(cells[mid][half - i]);
+//        }
 
         cells[mid][rightHalf].setFood(true);
     }

@@ -13,6 +13,7 @@ public class Game extends JFrame {
     private int mid;
     private int half;
     private int foodCount;
+    private Thread mainThread;
     private GridUI gridUI;
     private static final Color darkGreen = new Color(120,121,93);
 
@@ -23,6 +24,20 @@ public class Game extends JFrame {
         board = new Board(boardSize);
         snake = board.getSnake();
         gridUI = new GridUI();
+
+        mainThread = new Thread() {
+            @Override
+            public void run() {
+                while(!board.gameOver) {
+                    gridUI.repaint();
+                    try {
+                        Thread.sleep(1000);
+                    } catch (InterruptedException e) {
+                        e.printStackTrace();
+                    }
+                }
+            }
+        };
         add(gridUI);
         pack();
         setDefaultCloseOperation(EXIT_ON_CLOSE);
@@ -30,6 +45,7 @@ public class Game extends JFrame {
 
     public void start() {
         setVisible(true);
+        mainThread.start();
     }
 
     class GridUI extends JPanel {
@@ -44,14 +60,14 @@ public class Game extends JFrame {
         public GridUI() {
             setPreferredSize(new Dimension(boardSize * CELL_PIXEL_SIZE,
                     boardSize * CELL_PIXEL_SIZE));
-//            this.add(foodButton);
-//            foodButton.addActionListener(new ActionListener() {
-//                @Override
-//                public void actionPerformed(ActionEvent e) {
-//                    board.generateFood();
-//                    repaint();
-//                }
-//            });
+            this.add(foodButton);
+            foodButton.addActionListener(new ActionListener() {
+                @Override
+                public void actionPerformed(ActionEvent e) {
+                    board.generateFood();
+                    repaint();
+                }
+            });
         }
 
         @Override
