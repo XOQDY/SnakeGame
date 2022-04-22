@@ -15,6 +15,7 @@ public class Game extends JFrame {
         gridUI = new GridUI();
         add(gridUI);
         pack();
+        setDefaultCloseOperation(EXIT_ON_CLOSE);
     }
 
     public void start() {
