@@ -10,7 +10,7 @@ public class Game extends JFrame {
     private static final Color darkGreen = new Color(120,121,93);
 
     public Game() {
-        this.boardSize = 20 + 2; // +2 for the walls
+        this.boardSize = 19 + 2; // +2 for the walls
         board = new Board(boardSize);
         gridUI = new GridUI();
         add(gridUI);

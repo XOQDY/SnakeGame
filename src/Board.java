@@ -1,3 +1,5 @@
+import java.util.Random;
+
 public class Board {
 
     private Cell [][] cells;
@@ -34,6 +36,23 @@ public class Board {
         cells[mid][rightHalf].setFood(true);
     }
 
+    private boolean isCovered(int row, int col) {
+        Cell cell = getCell(row, col);
+        return cell == null || !cell.isHead() || !cell.isSnake();
+    }
+
+    public void generateFood() {
+        Random random = new Random();
+        int resultY = random.nextInt(size - 1) + 1; // random number between 1 to size
+        int resultX = random.nextInt(size - 1) + 1;
+
+        while (!isCovered(resultY, resultX)) {
+            resultY = random.nextInt(size - 1) + 1; // random number between 1 to size
+            resultX = random.nextInt(size - 1) + 1;
+        }
+
+        cells[resultY][resultX].setFood(true);
+    }
 
     public Cell getCell(int row, int col) {
         if (row < 0 || col < 0 || row >= size || col >= size) {
