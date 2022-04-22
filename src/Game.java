@@ -1,5 +1,7 @@
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 public class Game extends JFrame {
 
@@ -29,10 +31,19 @@ public class Game extends JFrame {
         private Image imageSnake;
         private Image imageWall;
         private Image imageFood;
+        private JButton foodButton = new JButton("Generate Food");
 
         public GridUI() {
             setPreferredSize(new Dimension(boardSize * CELL_PIXEL_SIZE,
                     boardSize * CELL_PIXEL_SIZE));
+//            this.add(foodButton);
+//            foodButton.addActionListener(new ActionListener() {
+//                @Override
+//                public void actionPerformed(ActionEvent e) {
+//                    board.generateFood();
+//                    repaint();
+//                }
+//            });
         }
 
         @Override

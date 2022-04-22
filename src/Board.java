@@ -9,6 +9,7 @@ public class Board {
         this.size = size;
         initCell();
         initObject();
+        generateFood();
     }
 
     private void initCell() {
