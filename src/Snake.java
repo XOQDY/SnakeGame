@@ -17,7 +17,9 @@ public class Snake {
     public Snake(int x, int y) {
         this.x = x;
         this.y = y;
-        currentState = new StateRight();
+        this.dx = 1;
+        this.dy = 0;
+        currentState = new StateLeftRight();
     }
 
     public void setCurrentState(State state) {
