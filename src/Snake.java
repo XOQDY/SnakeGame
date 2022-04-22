@@ -42,7 +42,7 @@ public class Snake {
 
     public void move(Cell cell) {
         snake.remove(0);
-        addSnake(cell);
+        addCell(cell);
     }
 
     public int getX() {
@@ -61,7 +61,7 @@ public class Snake {
         this.dy = dy;
     }
 
-    public void addSnake(Cell cell) {
+    public void addCell(Cell cell) {
         this.snake.add(cell);
     }
 }

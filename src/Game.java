@@ -20,11 +20,8 @@ public class Game extends JFrame {
         this.boardSize = 19 + 2; // +2 for the walls
         this.mid = boardSize / 2;
         this.half = (mid + 1) / 2;
-        snake = new Snake(mid, half);
-        for (int i = 3; i >= 0; --i) {
-            snake.addSnake(board.getCell(half, half - i));
-        }
         board = new Board(boardSize);
+        snake = board.getSnake();
         gridUI = new GridUI();
         add(gridUI);
         pack();

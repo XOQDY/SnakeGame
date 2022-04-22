@@ -4,12 +4,12 @@ public class Board {
 
     private Cell [][] cells;
     private int size;
+    private Snake snake;
 
     public Board(int size) {
         this.size = size;
         initCell();
         initObject();
-        generateFood();
     }
 
     private void initCell() {
@@ -33,6 +33,9 @@ public class Board {
         for (int i = 0; i < 3; ++i) {
             cells[mid][half - i].setSnake(true);
         }
+        for (int i = 3; i >= 0; --i) {
+            snake.addCell(cells[mid][half - i]);
+        }
 
         cells[mid][rightHalf].setFood(true);
     }
@@ -53,6 +56,10 @@ public class Board {
         }
 
         cells[resultY][resultX].setFood(true);
+    }
+
+    public Snake getSnake() {
+        return snake;
     }
 
     public Cell getCell(int row, int col) {
