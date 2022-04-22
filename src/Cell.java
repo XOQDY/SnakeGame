@@ -3,11 +3,13 @@ public class Cell {
     private boolean head;
     private boolean snake;
     private boolean food;
+    private boolean wall;
 
     public Cell() {
         head = false;
         snake = false;
         food = false;
+        wall = false;
     }
 
     public boolean isHead() {
@@ -22,6 +24,10 @@ public class Cell {
         return food;
     }
 
+    public boolean isWall() {
+        return wall;
+    }
+
     public void setHead(boolean head) {
         this.head = head;
     }
@@ -32,5 +38,9 @@ public class Cell {
 
     public void setFood(boolean food) {
         this.food = food;
+    }
+
+    public void setWall(boolean wall) {
+        this.wall = wall;
     }
 }
