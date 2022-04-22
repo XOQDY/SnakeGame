@@ -50,12 +50,15 @@ public class Game extends JFrame {
 
             Cell cell = board.getCell(row, col);
 
-            if (cell.isWall()) {
+            graphics.setColor(darkGreen);
+            graphics.fillRect(x, y, CELL_PIXEL_SIZE, CELL_PIXEL_SIZE);
+
+            if (cell.isWall() || cell.isSnake()) {
                 graphics.setColor(Color.black);
                 graphics.fillRect(x, y, CELL_PIXEL_SIZE, CELL_PIXEL_SIZE);
-            } else {
-                graphics.setColor(darkGreen);
-                graphics.fillRect(x, y, CELL_PIXEL_SIZE, CELL_PIXEL_SIZE);
+            } else if (cell.isFood()) {
+                graphics.setColor(Color.black);
+                graphics.drawRect(x + 2, y + 2, CELL_PIXEL_SIZE - 4, CELL_PIXEL_SIZE - 4);
             }
         }
     }
