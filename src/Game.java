@@ -9,10 +9,15 @@ public class Game extends JFrame {
     private GridUI gridUI;
 
     public Game() {
+        this.boardSize = 20;
         board = new Board(boardSize);
         gridUI = new GridUI();
         add(gridUI);
         pack();
+    }
+
+    public void start() {
+        setVisible(true);
     }
 
     class GridUI extends JPanel {
@@ -21,6 +26,36 @@ public class Game extends JFrame {
         private Image imageHead;
         private Image imageSnake;
         private Image imageWall;
+        private Image imageFood;
+
+        public GridUI() {
+            setPreferredSize(new Dimension(boardSize * CELL_PIXEL_SIZE,
+                    boardSize * CELL_PIXEL_SIZE));
+        }
+
+        @Override
+        public void paint(Graphics graphics) {
+            super.paint(graphics);
+            for (int row = 0; row < boardSize; ++row) {
+                for (int col = 0; col < boardSize; ++col) {
+                    paintCell(graphics, row, col);
+                }
+            }
+        }
+
+        private void paintCell(Graphics graphics, int row, int col) {
+            int x = col * CELL_PIXEL_SIZE;
+            int y = (row * CELL_PIXEL_SIZE);
+
+            Cell cell = board.getCell(row, col);
+
+            graphics.setColor(Color.gray);
+            graphics.fillRect(x, y, CELL_PIXEL_SIZE, CELL_PIXEL_SIZE);
+        }
     }
 
+    public static void main(String[] args) {
+        Game game = new Game();
+        game.start();
+    }
 }

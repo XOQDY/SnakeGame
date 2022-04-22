@@ -19,4 +19,11 @@ public class Board {
             }
         }
     }
+
+    public Cell getCell(int row, int col) {
+        if (row < 0 || col < 0 || row >= size || col >= size) {
+            return null;
+        }
+        return cells[row][col];
+    }
 }
