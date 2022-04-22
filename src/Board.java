@@ -6,6 +6,7 @@ public class Board {
     public Board(int size) {
         this.size = size;
         initCell();
+        initObject();
     }
 
     private void initCell() {
@@ -19,6 +20,20 @@ public class Board {
             }
         }
     }
+
+    private void initObject() {
+        int mid = size / 2;
+        int half = (mid + 1) / 2;
+        int rightHalf = ((mid - 1) + size) / 2;
+
+        cells[mid][half].setHead(true);
+        for (int i = 0; i < 3; ++i) {
+            cells[mid][half - i].setSnake(true);
+        }
+
+        cells[mid][rightHalf].setFood(true);
+    }
+
 
     public Cell getCell(int row, int col) {
         if (row < 0 || col < 0 || row >= size || col >= size) {
