@@ -1,8 +1,6 @@
-import java.util.Observable;
-import java.util.Observer;
 import java.util.Random;
 
-public class Board extends Observable {
+public class Board {
 
     private Cell [][] cells;
     private int size;
@@ -37,13 +35,12 @@ public class Board extends Observable {
         int half = (mid + 1) / 2;
         int rightHalf = ((mid - 1) + size) / 2;
 
+        this.snake = new Snake(half, mid);
         cells[mid][half].setHead(true);
         for (int i = 0; i < 3; ++i) {
             cells[mid][half - i].setSnake(true);
+            snake.addCellFront(cells[mid][half - i]);
         }
-//        for (int i = 3; i >= 0; --i) {
-//            snake.addCell(cells[mid][half - i]);
-//        }
 
         cells[mid][rightHalf].setFood(true);
     }

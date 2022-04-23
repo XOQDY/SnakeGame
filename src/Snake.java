@@ -41,9 +41,12 @@ public class Snake {
     }
 
     public void move(Cell cell) {
+        x += dx;
+        y += dy;
         snake.remove(0);
         addCell(cell);
     }
+
 
     public int getX() {
         return x;
@@ -63,5 +66,13 @@ public class Snake {
 
     public void addCell(Cell cell) {
         this.snake.add(cell);
+    }
+
+    public void addCellFront(Cell cell) {
+        this.snake.add(0, cell);
+    }
+
+    public Cell getTail() {
+        return snake.get(0);
     }
 }

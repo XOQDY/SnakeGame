@@ -18,6 +18,7 @@ public class Game extends JFrame {
     private static final Color darkGreen = new Color(120,121,93);
 
     public Game() {
+        addKeyListener(new Controller());
         this.boardSize = 19 + 2; // +2 for the walls
         this.mid = boardSize / 2;
         this.half = (mid + 1) / 2;
@@ -28,8 +29,16 @@ public class Game extends JFrame {
         mainThread = new Thread() {
             @Override
             public void run() {
+                Cell cell = board.getCell(snake.getY(), snake.getX());
                 while(!board.gameOver) {
                     gridUI.repaint();
+                    Cell cell2 = snake.getTail();
+                    cell2.setSnake(false);
+                    cell.setHead(false);
+                    cell.setSnake(true);
+                    snake.move(cell);
+                    cell = board.getCell(snake.getY(), snake.getX());
+                    cell.setHead(true);
                     try {
                         Thread.sleep(1000);
                     } catch (InterruptedException e) {
@@ -65,7 +74,21 @@ public class Game extends JFrame {
                 @Override
                 public void actionPerformed(ActionEvent e) {
                     board.generateFood();
-                    repaint();
+                }
+            });
+            addKeyListener(new KeyAdapter() {
+                @Override
+                public void keyPressed(KeyEvent e) {
+                    super.keyPressed(e);
+                    if (e.getKeyCode() == KeyEvent.VK_UP) {
+                        snake.up();
+                    } else if (e.getKeyCode() == KeyEvent.VK_DOWN) {
+                        snake.down();
+                    } else if (e.getKeyCode() == KeyEvent.VK_LEFT) {
+                        snake.left();
+                    } else if (e.getKeyCode() == KeyEvent.VK_RIGHT) {
+                        snake.right();
+                    }
                 }
             });
         }
@@ -103,8 +126,10 @@ public class Game extends JFrame {
         @Override
         public void keyPressed(KeyEvent e) {
             if (e.getKeyCode() == KeyEvent.VK_UP) {
+                System.out.println("up");
                 snake.up();
             } else if (e.getKeyCode() == KeyEvent.VK_DOWN) {
+                System.out.println("down");
                 snake.down();
             } else if (e.getKeyCode() == KeyEvent.VK_LEFT) {
                 snake.left();
