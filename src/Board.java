@@ -67,15 +67,23 @@ public class Board {
     }
 
     public void move() {
-        Cell tail = getTailSnakes();
         Cell next = getCell(snake.getY(), snake.getX());
-        if (!next.isFood()) {
-            tail.setSnake(false);
-            snakes.remove(0);
+
+        if (next.isWall()) {
+           System.out.println("GameOver");
+        } else {
+            if (next.isFood()) {
+                ++snakeLength;
+                next.setFood(false);
+            } else {
+                Cell tail = getTailSnakes();
+                tail.setSnake(false);
+                snakes.remove(0);
+            }
+            next.setSnake(true);
+            add(snakeLength, next);
+            snake.move();
         }
-        next.setSnake(true);
-        add(snakeLength, next);
-        snake.move();
     }
 
     public void add(int index, Cell cell) {
