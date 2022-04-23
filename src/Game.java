@@ -1,7 +1,5 @@
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 
@@ -12,9 +10,9 @@ public class Game extends JFrame {
     private int boardSize;
     private int mid;
     private int half;
-    private int foodCount;
     private Thread mainThread;
     private GridUI gridUI;
+    private long delayed = 200;
     private static final Color darkGreen = new Color(120,121,93);
 
     public Game() {
@@ -33,7 +31,7 @@ public class Game extends JFrame {
                     gridUI.repaint();
                     board.move();
                     try {
-                        Thread.sleep(1000);
+                        Thread.sleep(delayed);
                     } catch (InterruptedException e) {
                         e.printStackTrace();
                     }
@@ -91,16 +89,12 @@ public class Game extends JFrame {
         @Override
         public void keyPressed(KeyEvent e) {
             if (e.getKeyCode() == KeyEvent.VK_UP) {
-                System.out.println("up");
                 snake.up();
             } else if (e.getKeyCode() == KeyEvent.VK_DOWN) {
-                System.out.println("down");
                 snake.down();
             } else if (e.getKeyCode() == KeyEvent.VK_LEFT) {
-                System.out.println("left");
                 snake.left();
             } else if (e.getKeyCode() == KeyEvent.VK_RIGHT) {
-                System.out.println("right");
                 snake.right();
             }
         }

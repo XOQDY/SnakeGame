@@ -71,14 +71,16 @@ public class Board {
     }
 
     public void move() {
+        snake.move();
         Cell next = getCell(snake.getY(), snake.getX());
 
-        if (next.isWall()) {
+        if (next.isWall() || next.isSnake()) {
            System.out.println("GameOver");
         } else {
             if (next.isFood()) {
                 ++snakeLength;
                 next.setFood(false);
+                generateFood();
             } else {
                 Cell tail = getTailSnakes();
                 tail.setSnake(false);
@@ -86,7 +88,6 @@ public class Board {
             }
             next.setSnake(true);
             add(snakeLength, next);
-            snake.move();
         }
     }
 

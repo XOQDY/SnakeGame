@@ -3,7 +3,7 @@ public class StateLeftRight extends State{
     public void up(Snake stateOwner) {
         stateOwner.setCurrentState(new StateUpDown());
         stateOwner.setDx(0);
-        stateOwner.setDy(1);
+        stateOwner.setDy(-1);
     }
 
     @Override
@@ -18,6 +18,6 @@ public class StateLeftRight extends State{
     public void down(Snake stateOwner) {
         stateOwner.setCurrentState(new StateUpDown());
         stateOwner.setDx(0);
-        stateOwner.setDy(-1);
+        stateOwner.setDy(1);
     }
 }
