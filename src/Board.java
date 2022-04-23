@@ -1,8 +1,11 @@
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Random;
 
 public class Board {
 
     private Cell [][] cells;
+    private List<Cell> snakes = new ArrayList<>();
     private int size;
     private Snake snake;
     public boolean gameOver;
@@ -35,11 +38,12 @@ public class Board {
         int half = (mid + 1) / 2;
         int rightHalf = ((mid - 1) + size) / 2;
 
-        this.snake = new Snake(half, mid);
-        cells[mid][half].setHead(true);
-        for (int i = 0; i < 3; ++i) {
+        snake = new Snake(half, mid);
+//        cells[mid][half].setSnake(true);
+//        snakes.add(cells[mid][half]);
+        for (int i = 3; i >= 0; --i) {
             cells[mid][half - i].setSnake(true);
-            snake.addCellFront(cells[mid][half - i]);
+            snakes.add(cells[mid][half - i]);
         }
 
         cells[mid][rightHalf].setFood(true);
@@ -65,6 +69,18 @@ public class Board {
 
     public Snake getSnake() {
         return snake;
+    }
+
+    public void remove() {
+        snakes.remove(0);
+    }
+
+    public void add(int index, Cell cell) {
+        snakes.add(index, cell);
+    }
+
+    public Cell getTailSnakes() {
+        return snakes.get(0);
     }
 
     public Cell getCell(int row, int col) {

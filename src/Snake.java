@@ -40,11 +40,9 @@ public class Snake {
         currentState.down(this);
     }
 
-    public void move(Cell cell) {
+    public void move() {
         x += dx;
         y += dy;
-        snake.remove(0);
-        addCell(cell);
     }
 
 

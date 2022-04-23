@@ -12,6 +12,7 @@ public class Game extends JFrame {
     private int boardSize;
     private int mid;
     private int half;
+    private int length = 2;
     private int foodCount;
     private Thread mainThread;
     private GridUI gridUI;
@@ -29,16 +30,23 @@ public class Game extends JFrame {
         mainThread = new Thread() {
             @Override
             public void run() {
-                Cell cell = board.getCell(snake.getY(), snake.getX());
                 while(!board.gameOver) {
                     gridUI.repaint();
-                    Cell cell2 = snake.getTail();
-                    cell2.setSnake(false);
-                    cell.setHead(false);
-                    cell.setSnake(true);
-                    snake.move(cell);
-                    cell = board.getCell(snake.getY(), snake.getX());
-                    cell.setHead(true);
+//                    Cell head = board.getHeadSnakes(length - 1);
+                    Cell tail = board.getTailSnakes();
+                    Cell next = board.getCell(snake.getY(), snake.getX());
+                    System.out.println(snake.getX() + " " +snake.getY());
+//                    head.setSnake(false);
+//                    head.setSnake(true);
+                    if (tail.isSnake())
+                        System.out.println("True");
+                    tail.setSnake(false);
+                    next.setSnake(true);
+                    board.remove();
+                    board.add(length, next);
+                    if (tail.isSnake())
+                        System.out.println("True");
+                    snake.move();
                     try {
                         Thread.sleep(1000);
                     } catch (InterruptedException e) {
@@ -60,10 +68,6 @@ public class Game extends JFrame {
     class GridUI extends JPanel {
         public static final int CELL_PIXEL_SIZE = 30;
 
-        private Image imageHead;
-        private Image imageSnake;
-        private Image imageWall;
-        private Image imageFood;
         private JButton foodButton = new JButton("Generate Food");
 
         public GridUI() {
