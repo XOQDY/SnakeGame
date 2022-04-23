@@ -53,33 +53,9 @@ public class Game extends JFrame {
     class GridUI extends JPanel {
         public static final int CELL_PIXEL_SIZE = 30;
 
-        private JButton foodButton = new JButton("Generate Food");
-
         public GridUI() {
             setPreferredSize(new Dimension(boardSize * CELL_PIXEL_SIZE,
                     boardSize * CELL_PIXEL_SIZE));
-            this.add(foodButton);
-            foodButton.addActionListener(new ActionListener() {
-                @Override
-                public void actionPerformed(ActionEvent e) {
-                    board.generateFood();
-                }
-            });
-            addKeyListener(new KeyAdapter() {
-                @Override
-                public void keyPressed(KeyEvent e) {
-                    super.keyPressed(e);
-                    if (e.getKeyCode() == KeyEvent.VK_UP) {
-                        snake.up();
-                    } else if (e.getKeyCode() == KeyEvent.VK_DOWN) {
-                        snake.down();
-                    } else if (e.getKeyCode() == KeyEvent.VK_LEFT) {
-                        snake.left();
-                    } else if (e.getKeyCode() == KeyEvent.VK_RIGHT) {
-                        snake.right();
-                    }
-                }
-            });
         }
 
         @Override
