@@ -34,6 +34,12 @@ public class Game extends JFrame {
                         e.printStackTrace();
                     }
                 }
+                JOptionPane.showMessageDialog(
+                        Game.this,
+                        "You Lose",
+                        "Snake Hitted!",
+                        JOptionPane.WARNING_MESSAGE
+                );
             }
         };
         add(gridUI);
