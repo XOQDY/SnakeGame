@@ -9,17 +9,15 @@ public class Game extends JFrame {
     private Board board;
     private int boardSize;
     private int mid;
-    private int half;
     private Thread mainThread;
     private GridUI gridUI;
-    private long delayed = 200;
+    private long delayed = 2000;
     private static final Color darkGreen = new Color(120,121,93);
 
     public Game() {
         addKeyListener(new Controller());
         this.boardSize = 19 + 2; // +2 for the walls
         this.mid = boardSize / 2;
-        this.half = (mid + 1) / 2;
         board = new Board(boardSize);
         snake = board.getSnake();
         gridUI = new GridUI();

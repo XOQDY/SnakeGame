@@ -8,7 +8,7 @@ public class Board {
     private List<Cell> snakes = new ArrayList<>();
     private int size;
     private Snake snake;
-    private int snakeLength = 2;
+    private int snakeLength = 3;
     public boolean gameOver;
 
     public Board(int size) {
@@ -40,7 +40,7 @@ public class Board {
         int rightHalf = ((mid - 1) + size) / 2;
 
         snake = new Snake(half, mid);
-        for (int i = 3; i >= 0; --i) {
+        for (int i = snakeLength; i >= 0; --i) {
             cells[mid][half - i].setSnake(true);
             snakes.add(cells[mid][half - i]);
         }
@@ -50,7 +50,7 @@ public class Board {
 
     private boolean isCovered(int row, int col) {
         Cell cell = getCell(row, col);
-        return cell == null || !cell.isHead() || !cell.isSnake();
+        return cell == null || !cell.isSnake();
     }
 
     public void generateFood() {
@@ -73,6 +73,7 @@ public class Board {
     public void move() {
         snake.move();
         Cell next = getCell(snake.getY(), snake.getX());
+        System.out.println(snakes);
 
         if (next.isWall() || next.isSnake()) {
            System.out.println("GameOver");
