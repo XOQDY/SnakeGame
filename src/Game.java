@@ -12,7 +12,6 @@ public class Game extends JFrame {
     private int boardSize;
     private int mid;
     private int half;
-    private int length = 2;
     private int foodCount;
     private Thread mainThread;
     private GridUI gridUI;
@@ -24,7 +23,7 @@ public class Game extends JFrame {
         this.mid = boardSize / 2;
         this.half = (mid + 1) / 2;
         board = new Board(boardSize);
-        snake = board.getSnake();
+//        snake = board.getSnake();
         gridUI = new GridUI();
 
         mainThread = new Thread() {
@@ -32,21 +31,7 @@ public class Game extends JFrame {
             public void run() {
                 while(!board.gameOver) {
                     gridUI.repaint();
-//                    Cell head = board.getHeadSnakes(length - 1);
-                    Cell tail = board.getTailSnakes();
-                    Cell next = board.getCell(snake.getY(), snake.getX());
-                    System.out.println(snake.getX() + " " +snake.getY());
-//                    head.setSnake(false);
-//                    head.setSnake(true);
-                    if (tail.isSnake())
-                        System.out.println("True");
-                    tail.setSnake(false);
-                    next.setSnake(true);
-                    board.remove();
-                    board.add(length, next);
-                    if (tail.isSnake())
-                        System.out.println("True");
-                    snake.move();
+                    board.move();
                     try {
                         Thread.sleep(1000);
                     } catch (InterruptedException e) {

@@ -8,6 +8,7 @@ public class Board {
     private List<Cell> snakes = new ArrayList<>();
     private int size;
     private Snake snake;
+    private int snakeLength = 2;
     public boolean gameOver;
 
     public Board(int size) {
@@ -39,8 +40,6 @@ public class Board {
         int rightHalf = ((mid - 1) + size) / 2;
 
         snake = new Snake(half, mid);
-//        cells[mid][half].setSnake(true);
-//        snakes.add(cells[mid][half]);
         for (int i = 3; i >= 0; --i) {
             cells[mid][half - i].setSnake(true);
             snakes.add(cells[mid][half - i]);
@@ -67,12 +66,15 @@ public class Board {
         cells[resultY][resultX].setFood(true);
     }
 
-    public Snake getSnake() {
-        return snake;
-    }
-
-    public void remove() {
+    public void move() {
+        Cell tail = getTailSnakes();
+        Cell next = getCell(snake.getY(), snake.getX());
+        System.out.println(snake.getX() + " " +snake.getY());
+        tail.setSnake(false);
+        next.setSnake(true);
         snakes.remove(0);
+        add(snakeLength, next);
+        snake.move();
     }
 
     public void add(int index, Cell cell) {
