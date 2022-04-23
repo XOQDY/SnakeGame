@@ -69,10 +69,11 @@ public class Board {
     public void move() {
         Cell tail = getTailSnakes();
         Cell next = getCell(snake.getY(), snake.getX());
-        System.out.println(snake.getX() + " " +snake.getY());
-        tail.setSnake(false);
+        if (!next.isFood()) {
+            tail.setSnake(false);
+            snakes.remove(0);
+        }
         next.setSnake(true);
-        snakes.remove(0);
         add(snakeLength, next);
         snake.move();
     }
