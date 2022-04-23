@@ -11,7 +11,7 @@ public class Game extends JFrame {
     private int mid;
     private Thread mainThread;
     private GridUI gridUI;
-    private long delayed = 2000;
+    private long delayed = 200;
     private static final Color darkGreen = new Color(120,121,93);
 
     public Game() {

@@ -1,3 +1,4 @@
+import javax.swing.*;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
@@ -73,10 +74,9 @@ public class Board {
     public void move() {
         snake.move();
         Cell next = getCell(snake.getY(), snake.getX());
-        System.out.println(snakes);
 
         if (next.isWall() || next.isSnake()) {
-           System.out.println("GameOver");
+            gameOver = true;
         } else {
             if (next.isFood()) {
                 ++snakeLength;
