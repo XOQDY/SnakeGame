@@ -23,7 +23,7 @@ public class Game extends JFrame {
         this.mid = boardSize / 2;
         this.half = (mid + 1) / 2;
         board = new Board(boardSize);
-//        snake = board.getSnake();
+        snake = board.getSnake();
         gridUI = new GridUI();
 
         mainThread = new Thread() {
@@ -92,12 +92,16 @@ public class Game extends JFrame {
         public void keyPressed(KeyEvent e) {
             if (e.getKeyCode() == KeyEvent.VK_UP) {
                 System.out.println("up");
+                snake.up();
             } else if (e.getKeyCode() == KeyEvent.VK_DOWN) {
                 System.out.println("down");
+                snake.down();
             } else if (e.getKeyCode() == KeyEvent.VK_LEFT) {
                 System.out.println("left");
+                snake.left();
             } else if (e.getKeyCode() == KeyEvent.VK_RIGHT) {
                 System.out.println("right");
+                snake.right();
             }
         }
     }

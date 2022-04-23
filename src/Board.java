@@ -66,6 +66,10 @@ public class Board {
         cells[resultY][resultX].setFood(true);
     }
 
+    public Snake getSnake() {
+        return snake;
+    }
+
     public void move() {
         Cell next = getCell(snake.getY(), snake.getX());
 
