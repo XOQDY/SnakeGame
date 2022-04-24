@@ -1,11 +1,6 @@
-import java.util.ArrayList;
-import java.util.List;
-
 public class Snake {
 
     private State currentState;
-
-    private List<Cell> snake = new ArrayList<Cell>();
 
     private int x;
     private int y;
@@ -60,17 +55,5 @@ public class Snake {
 
     public void setDy(int dy) {
         this.dy = dy;
-    }
-
-    public void addCell(Cell cell) {
-        this.snake.add(cell);
-    }
-
-    public void addCellFront(Cell cell) {
-        this.snake.add(0, cell);
-    }
-
-    public Cell getTail() {
-        return snake.get(0);
     }
 }
